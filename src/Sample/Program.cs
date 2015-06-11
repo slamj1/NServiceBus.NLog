@@ -1,9 +1,8 @@
 using System;
-using System.ServiceProcess;
 using NServiceBus;
 using NServiceBus.Logging;
 
-class ProgramService : ServiceBase
+class Program 
 {
     static void Main()
     {
@@ -18,6 +17,7 @@ class ProgramService : ServiceBase
         using (var bus = Bus.Create(busConfig))
         {
             bus.Start();
+            bus.SendLocal(new MyMessage());
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.Read();
         }
